@@ -1,51 +1,72 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>BitchWork - Coming Soon</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bitchwork</title>
     <style>
-        body {
-            background-color: #ff69b4; /* Playful pink background */
-            font-family: 'Arial', sans-serif;
-            text-align: center;
-            color: white;
-        }
+      body, html {
+          height: 100%;
+          margin: 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          overflow: hidden;
+          width: 100%;
+      }
 
-        .container {
-            padding: 50px;
-        }
+      #image-container {
+          width: 100%;
+          height: 100%;
+          position: relative;
+      }
 
-        h1 {
-            font-size: 48px;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-        }
-
-        p {
-            font-size: 24px;
-            line-height: 1.5;
-        }
-
-        .cta-button {
-            padding: 15px 30px;
-            background-color: #000;
-            color: #fff;
-            text-transform: uppercase;
-            border: none;
-            cursor: pointer;
-            font-size: 18px;
-            margin-top: 20px;
-            border-radius: 5px;
-        }
-
-        .cta-button:hover {
-            background-color: #333;
-        }
+      #image {
+        position: absolute;
+        transition: transform 2s, opacity 2s;
+      }
     </style>
+
 </head>
 <body>
-    <div class="container">
-        <h1>BitchWork</h1>
-        <p>Coming soon</p>
+    <div id="image-container" style="display: flex; padding: 1em">
+        <img id="image" src="/imgs/chad1.jpg" alt="Sliding Image">
     </div>
+    <script>
+      const images = [
+          '/imgs/chad1.jpg',
+          '/imgs/chad2.png',
+          //'/imgs/chad2.png',
+      ];
+
+      const imgElem = document.getElementById('image');
+      let currentIndex = 0;
+
+      function getRandomSize() {
+          const size = Math.random() * 10 + 100; // 100% to 110%
+          return size + '%';
+      }
+
+      function showNextImage() {
+          imgElem.style.opacity = '0';
+          setTimeout(() => {
+              currentIndex = (currentIndex + 1) % images.length;
+              imgElem.src = images[currentIndex];
+
+              const randomX = Math.random() * window.innerWidth;
+              const randomY = Math.random() * window.innerHeight;
+              const translateX = Math.random() > 0.5 ? randomX : 0;
+              const translateY = Math.random() > 0.5 ? randomY : 0;
+
+              imgElem.style.maxWidth = getRandomSize();
+              imgElem.style.maxHeight = getRandomSize();
+              imgElem.style.transform = `translate(${translateX}px, ${translateY}px)`;
+              imgElem.style.opacity = '1';
+          }, 2000);
+      }
+
+      setInterval(showNextImage, 4000);
+      showNextImage();
+    </script>
 </body>
 </html>
