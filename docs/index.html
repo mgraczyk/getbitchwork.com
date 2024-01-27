@@ -36,7 +36,7 @@
       const images = [
           '/imgs/chad1.jpg',
           '/imgs/chad2.png',
-          //'/imgs/chad2.png',
+          '/imgs/chad3.jpg',
       ];
 
       const imgElem = document.getElementById('image');
@@ -54,7 +54,7 @@
               imgElem.src = images[currentIndex];
 
               const randomX = Math.random() * window.innerWidth;
-              const randomY = Math.random() * window.innerHeight;
+              const randomY = Math.random() * window.innerHeight * 0.8;
               const translateX = Math.random() > 0.5 ? randomX : 0;
               const translateY = Math.random() > 0.5 ? randomY : 0;
 
